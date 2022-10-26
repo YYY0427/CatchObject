@@ -24,11 +24,13 @@ public:
 	void setColor(int color) { m_color = color; }
 	//つかめるかどうか
 	bool isCatchEnable(Vec2 pos);
+	bool isCatch() const { return m_isCatch; }
 private:
 	SceneTest* m_pSceneTest;
 	// 表示情報
 	int		m_color;
 
 	//つかみ情報
-	bool	m_isCatch;		//つかまれているかどうか
+	bool	m_isCatch;			//つかまれているかどうか
+	Vec2	m_catchOffset;		//つかんだ位置から中心へのベクトル
 };

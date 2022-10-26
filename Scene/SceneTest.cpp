@@ -2,8 +2,13 @@
 #include "game.h"
 #include "SceneTest.h"
 
-
 namespace
+{
+	constexpr int kObjectNum = 4;
+}
+
+SceneTest::SceneTest() :
+	m_circle(kObjectNum)
 {
 }
 
@@ -31,9 +36,30 @@ void SceneTest::end()
 
 SceneBase* SceneTest::update()
 {
-	for (auto& obj : m_circle)
+	/*for (auto& obj : m_circle)
 	{
+		
 		obj.update();
+	}*/
+
+	for (int i =  m_circle.size() - 1; i >= 0; i--)
+	{
+		bool isCatchOther = false;
+		for (int j = 0; j < m_circle.size(); j++)
+		{
+			if (i == j)	continue;
+
+			if (m_circle[j].isCatch())
+			{
+				isCatchOther = true;
+			}
+		}
+
+		if (!isCatchOther)
+		{
+			m_circle[i].update();
+		}
+
 	}
 	return this;
 }
